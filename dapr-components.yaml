@@ -1,0 +1,26 @@
+# PostgreSQL State Store Component
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: statestore
+spec:
+  type: state.postgresql
+  version: v1
+  metadata:
+  - name: connectionString
+    value: "host=postgres-service.default.svc.cluster.local user=postgres password=npg_qZT2WIjEVtG9 port=5432 dbname=tododb sslmode=disable"
+
+---
+# Pub/Sub Component (using Redis)
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+spec:
+  type: pubsub.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    value: redis-service.default.svc.cluster.local:6379
+  - name: redisPassword
+    value: ""
